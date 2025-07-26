@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Mask Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1588776814546-ec2c23329892?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-shadow: 2px 2px 6px #000;
+            margin-bottom: 30px;
+        }
+
+        .glass-box {
+            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #ffffffcc;
+            color: #333;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .result img {
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 100%;
+        }
+
+        .result h2, .result h3 {
+            margin: 10px 0;
+            color: #fff;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Face Mask Detection</h1>
+
+    <div class="glass-box">
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" required><br>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+
+    {% if prediction %}
+    <div class="glass-box result">
+        <h2>Prediction: <span style="color: #2ecc71;">{{ prediction }}</span></h2>
+        <img src="{{ image_path }}" alt="Uploaded Image">
+    </div>
+    {% endif %}
+
+</body>
+</html>
